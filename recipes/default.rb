@@ -16,7 +16,7 @@ fileextension = File.extname(filename)
 download_path = "#{Chef::Config['file_cache_path']}/#{filename}"
 extract_path = "#{Chef::Config['file_cache_path']}/#{node['commvault']['filename']}/#{node['commvault']['checksum']}"
 winfriendly_extract_path = win_friendly_path(extract_path)
-install_path = "#{extract_path}/#{node['commvault']['packagename']}/#{node['commvault']['filename']}/node['commvault']['packagetype']"
+install_path = "#{extract_path}/#{node['commvault']['packagename']}/#{node['commvault']['filename']}/#{node['commvault']['packagetype']}"
 install_configuration_path =  "#{install_path}/Install.xml"
 
 remote_file download_path do
