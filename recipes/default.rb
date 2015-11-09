@@ -15,6 +15,7 @@ filename = File.basename(node['commvault']['url']).downcase
 fileextension = File.extname(filename)
 download_path = "#{Chef::Config['file_cache_path']}/#{filename}"
 extract_path = "#{Chef::Config['file_cache_path']}/#{node['commvault']['filename']}/#{node['commvault']['checksum']}"
+winfriendly_extract_path = win_friendly_path(extract_path)
 install_path = "#{extract_path}/#{node['commvault']['packagename']}/#{node['commvault']['filename']}/node['commvault']['packagetype']"
 install_configuration_path =  "#{install_path}/Install.xml"
 
@@ -25,7 +26,7 @@ remote_file download_path do
 end
 
 execute 'extract_commvault' do
-  command "#{File.join(node['7-zip']['home'], '7z.exe')} x -y -o\"#{win_friendly_path(extract_path)}\" #{win_friendly_path(download_path)}"
+  command "#{File.join(node['7-zip']['home'], '7z.exe')} x -y -o\"#{winfriendly_extract_path}\" #{download_path}"
   only_if {!is_commvault_installed && !(::File.directory?(download_path)) }
 end
 
@@ -37,5 +38,5 @@ windows_package node['commvault']['name'] do
 	checksum node['commvault']['checksum']
 	source "#{install_path}/Setup.exe"
 	installer_type :custom
-	options "/Silent /play \"#{win_friendly_path(install_configuration_path)}/\""
+	options "/Silent /play \"#{install_configuration_path}/\""
 end
