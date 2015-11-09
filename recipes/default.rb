@@ -10,15 +10,23 @@ include_recipe '7-zip'
 
 ::Chef::Recipe.send(:include, Windows::Helper)
 is_commvault_installed = is_package_installed?("#{node['commvault']['name']}")
+
+filename = File.basename(node['commvault']['url']).downcase
+fileextension = File.extname(filename)
+download_path = "#{Chef::Config['file_cache_path']}/#{filename}"
 extract_path = "#{Chef::Config['file_cache_path']}/#{node['commvault']['filename']}/#{node['commvault']['checksum']}"
 install_path = "#{extract_path}/#{node['commvault']['packagename']}/#{node['commvault']['filename']}/node['commvault']['packagetype']"
 install_configuration_path =  "#{install_path}/Install.xml"
 
-windows_zipfile extract_path do
-	source node['commvault']['url']
-	checksum node['commvault']['checksum']
-	action :unzip
-	not_if {is_commvault_installed}
+remote_file download_path do
+  source node['commvault']['url']
+  checksum node['commvault']['checksum']
+  only_if {is_commvault_installed}
+end
+
+execute 'extract_commvault' do
+  command "#{File.join(node['7-zip']['home'], '7z.exe')} x -y -o\"#{extract_path}\" #{download_path}"
+  only_if {!is_commvault_installed && !(::File.directory?(download_path)) }
 end
 
 template install_configuration_path do
