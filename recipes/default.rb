@@ -22,7 +22,7 @@ install_configuration_path =  "#{install_path}/Install.xml"
 remote_file download_path do
   source node['commvault']['url']
   checksum node['commvault']['checksum']
-  only_if {is_commvault_installed}
+  only_if {!is_commvault_installed}
 end
 
 execute 'extract_commvault' do
