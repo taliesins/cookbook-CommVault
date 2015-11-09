@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CVInstallManager_ClientSetup Focus="<%= node['commvault']['instanceName'] %>" JobID="0" OEMID="1" Operationtype="0">
+   <CommServeInfo>
+      <CommserveHostInfo _type_="3" clientName="" hostName="" />
+   </CommServeInfo>
+   <Dialogs name="ShowFirewallConfigDialog" show="0" />
+   <Dialogs name="ShowCommServerNameForCommServeInstallDialog" show="0" />
+   <Dialogs name="ShowFirewallConnectionDialog" show="0" />
+   <Dialogs name="ShowFirewallHTTPProxyDialog" show="0" />
+   <Dialogs name="ShowSelectPortsDialog" show="0" />
+   <Dialogs name="ShowCertificatePathDialog" show="0" />
+   <Dialogs name="ShowAddProgramsToFirewallExclusionList" show="0" />
+   <Dialogs name="ShowDestinationPathDialog" show="0" />
+   <Dialogs name="ShowClientGroupDialog" show="0" />
+   <Dialogs name="ShowSQLAutoDiscoveryOptionDialog" show="0" />
+   <clientComposition activateClient="1" packageDeliveryOption="0">
+      <clientInfo>
+         <client cvdPort="0" evmgrcPort="0" installDirectory="<%= node['commvault']['installDirectory'] %>">
+            <clientEntity _type_="3" clientName="<%= node['commvault']['clientName'] %>" hostName="<%= node['commvault']['hostName'] %>" />
+            <osInfo Type="Windows" osId="313" />
+         </client>
+         <clientGroups _type_="28" clientGroupName="" />
+         <clientProps enableAccessControl="0" />
+      </clientInfo>
+      <components>
+         <commonInfo RequestedbyReleaseLicAtClientLevel="0" globalFilters="2" storageOrSubclientPolicy="1">
+            <storagePolicyToUse _type_="17" storagePolicyName="CV_DEFAULT" />
+         </commonInfo>
+         <componentInfo ComponentId="1" ComponentName="File System Core" _type_="60" clientSidePackage="1" consumeLicense="1" osType="Windows" />
+         <componentInfo ComponentId="702" ComponentName="File System" _type_="60" clientSidePackage="1" consumeLicense="1" osType="Windows" />
+         <componentInfo ComponentId="353" ComponentName="iDA for MSSQL Server" _type_="60" clientSidePackage="1" consumeLicense="1" osType="Windows" />
+         <sqlAgent instanceAutoDiscovery="1" />
+      </components>
+   </clientComposition>
+   <installFlags addToFirewallExclusion="<%= node['commvault']['installFlags']['addToFirewallExclusion'] %>" autoRegister="<%= node['commvault']['installFlags']['autoRegister'] %>" decoupledInstall="<%= node['commvault']['installFlags']['decoupledInstall'] %>" deletePackagesAfterInstall="<%= node['commvault']['installFlags']['deletePackagesAfterInstall'] %>" disableOSFirewall="<%= node['commvault']['installFlags']['disableOSFirewall'] %>" forceReboot="<%= node['commvault']['installFlags']['forceReboot'] %>" ignoreJobsRunning="<%= node['commvault']['installFlags']['ignoreJobsRunning'] %>" install32Base="<%= node['commvault']['installFlags']['install32Base'] %>" install64Base="<%= node['commvault']['installFlags']['install64Base'] %>" installLatestServicePack="<%= node['commvault']['installFlags']['installLatestServicePack'] %>" killBrowserProcesses="<%= node['commvault']['installFlags']['killBrowserProcesses'] %>" launchRegisterMe="<%= node['commvault']['installFlags']['launchRegisterMe'] %>" overrideClientInfo="<%= node['commvault']['installFlags']['overrideClientInfo'] %>" preferredIPFamily="<%= node['commvault']['installFlags']['preferredIPFamily'] %>" restoreOnlyAgents="<%= node['commvault']['installFlags']['restoreOnlyAgents'] %>" showFirewallConfigDialogs="<%= node['commvault']['installFlags']['showFirewallConfigDialogs'] %>" stopOracleServices="<%= node['commvault']['installFlags']['stopOracleServices'] %>" unixGroupAccess="<%= node['commvault']['installFlags']['unixGroupAccess'] %>" unixOtherAccess="<%= node['commvault']['installFlags']['unixOtherAccess'] %>" upgradeMode="<%= node['commvault']['installFlags']['upgradeMode'] %>" useNewOS="<%= node['commvault']['installFlags']['useNewOS'] %>">
+      <firewallInstall bindToInterface="<%= node['commvault']['firewallInstall']['bindToInterface'] %>" enableFirewallConfig="<%= node['commvault']['firewallInstall']['enableFirewallConfig'] %>" firewallConnectionType="<%= node['commvault']['firewallInstall']['firewallConnectionType'] %>" httpProxyPortNumber="<%= node['commvault']['firewallInstall']['httpProxyPortNumber'] %>" portNumber="<%= node['commvault']['firewallInstall']['portNumber'] %>" />
+   </installFlags>
+</CVInstallManager_ClientSetup>
