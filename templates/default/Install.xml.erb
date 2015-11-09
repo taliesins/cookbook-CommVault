@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CVInstallManager_ClientSetup Focus="<%= node['commvault']['instanceName'] %>" JobID="0" OEMID="1" Operationtype="0">
    <CommServeInfo>
-      <CommserveHostInfo _type_="3" clientName="" hostName="" />
+      <CommserveHostInfo _type_="3" clientName="<%= node['commvault']['server']['clientName'] %>" hostName="<%= node['commvault']['server']['hostName'] %>" />
    </CommServeInfo>
    <Dialogs name="ShowFirewallConfigDialog" show="0" />
    <Dialogs name="ShowCommServerNameForCommServeInstallDialog" show="0" />
@@ -16,7 +16,7 @@
    <clientComposition activateClient="1" packageDeliveryOption="0">
       <clientInfo>
          <client cvdPort="0" evmgrcPort="0" installDirectory="<%= node['commvault']['installDirectory'] %>">
-            <clientEntity _type_="3" clientName="<%= node['commvault']['clientName'] %>" hostName="<%= node['commvault']['hostName'] %>" />
+            <clientEntity _type_="3" clientName="<%= node['commvault']['client']['clientName'] %>" hostName="<%= node['commvault']['client']['hostName'] %>" />
             <osInfo Type="Windows" osId="313" />
          </client>
          <clientGroups _type_="28" clientGroupName="" />

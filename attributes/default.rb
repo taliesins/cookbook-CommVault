@@ -19,8 +19,10 @@
 
 default['commvault']['instanceName'] = "Instance001"
 default['commvault']['installDirectory'] = "C:\\Program Files\\CommVault\\Simpana\\"
-default['commvault']['clientName'] = ""
-default['commvault']['hostName'] = ""
+default['commvault']['server']['clientName'] = "nl-ams-cs"
+default['commvault']['server']['hostName'] = "nl-ams-cs.office.interxion.net"
+default['commvault']['client']['clientName'] = node['hostname']
+default['commvault']['client']['hostName'] = node['fqdn']
 
 default['commvault']['installFlags']['addToFirewallExclusion'] = "1"
 default['commvault']['installFlags']['autoRegister'] = "0"

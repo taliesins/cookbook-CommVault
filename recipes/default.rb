@@ -22,12 +22,11 @@ install_configuration_path =  "#{install_path}/Install.xml"
 remote_file download_path do
   source node['commvault']['url']
   checksum node['commvault']['checksum']
-  only_if {!is_commvault_installed}
 end
 
 execute 'extract_commvault' do
   command "#{File.join(node['7-zip']['home'], '7z.exe')} x -y -o\"#{winfriendly_extract_path}\" #{download_path}"
-  only_if {!is_commvault_installed && !(::File.directory?(download_path)) }
+  only_if {!(::File.directory?(download_path)) }
 end
 
 template install_configuration_path do
