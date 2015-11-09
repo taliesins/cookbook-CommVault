@@ -11,7 +11,7 @@ include_recipe '7-zip'
 ::Chef::Recipe.send(:include, Windows::Helper)
 is_commvault_installed = is_package_installed?("#{node['commvault']['name']}")
 extract_path = "#{Chef::Config['file_cache_path']}/#{node['commvault']['filename']}/#{node['commvault']['checksum']}"
-install_path = "#{extract_path}/#{default['commvault']['packagename']}/#{default['commvault']['filename']}/default['commvault']['packagetype']"
+install_path = "#{extract_path}/#{node['commvault']['packagename']}/#{node['commvault']['filename']}/node['commvault']['packagetype']"
 install_configuration_path =  "#{install_path}/Install.xml"
 
 windows_zipfile extract_path do
