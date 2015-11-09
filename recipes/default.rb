@@ -31,10 +31,3 @@ windows_package node['commvault']['name'] do
 	installer_type :custom
 	options "/Silent /play \"#{install_configuration_path}/\""
 end
-
-download_path = "#{Chef::Config['file_cache_path']}/#{filename}"
-remote_file download_path do
-  source package_url
-  checksum package_checksum
-  only_if {is_iso}
-end
