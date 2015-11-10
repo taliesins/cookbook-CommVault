@@ -9,7 +9,6 @@
 include_recipe '7-zip'
 
 ::Chef::Recipe.send(:include, Windows::Helper)
-is_commvault_installed = is_package_installed?("#{node['commvault']['name']}")
 
 filename = File.basename(node['commvault']['url']).downcase
 fileextension = File.extname(filename)
