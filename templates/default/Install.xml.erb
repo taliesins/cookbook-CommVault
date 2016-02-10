@@ -26,6 +26,11 @@
          <commonInfo RequestedbyReleaseLicAtClientLevel="0" globalFilters="2" storageOrSubclientPolicy="1">
             <storagePolicyToUse _type_="17" storagePolicyName="CV_DEFAULT" />
          </commonInfo>
+         <commserve>
+            <csdbInfo>
+               <CommCellUser password="<%= node['commvault']['commcelluser']['password'] %>" userName="<%= node['commvault']['commcelluser']['username'] %>"/>
+            </csdbInfo>
+         </commserve>
          <componentInfo ComponentId="1" ComponentName="File System Core" _type_="60" clientSidePackage="1" consumeLicense="1" osType="Windows" />
          <componentInfo ComponentId="702" ComponentName="File System" _type_="60" clientSidePackage="1" consumeLicense="1" osType="Windows" />
          <componentInfo ComponentId="353" ComponentName="iDA for MSSQL Server" _type_="60" clientSidePackage="1" consumeLicense="1" osType="Windows" />

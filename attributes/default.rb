@@ -52,6 +52,9 @@ default['commvault']['firewallInstall']['firewallConnectionType'] = '0'
 default['commvault']['firewallInstall']['httpProxyPortNumber'] = '0'
 default['commvault']['firewallInstall']['portNumber'] = '8403'
 
+default['commvault']['commcelluser']['password'] = ''
+default['commvault']['commcelluser']['username'] = ''
+
 default['commvault']['name'] = 'CommVault File System Core (' + default['commvault']['instanceName'] + ')'
 default['commvault']['packagename'] = 'CommVault-Client'
 default['commvault']['packagetype'] = 'WinX64'
