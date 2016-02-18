@@ -38,3 +38,34 @@ windows_package node['commvault']['name'] do
 	installer_type :custom
 	options "/Silent /play \"#{install_configuration_path}\""
 end
+
+powershell_script 'Register client with comm vault server' do
+    guard_interpreter :powershell_script
+    code <<-EOH
+$ErrorActionPreference="Stop"
+$cmd = join-path '#{node['commvault']['installDirectory']}' 'base\\SIMCallWrapper.exe'
+$clientName = '#{node['commvault']['client']['clientName']}'
+$clientHostName = '#{node['commvault']['client']['hostName']}'
+$csName = '#{node['commvault']['server']['clientName']}'
+$csHost = '#{node['commvault']['server']['hostName']}'
+$instance = '#{node['commvault']['instanceName']}'
+$username = '#{node['commvault']['commcelluser']['username']}'
+$password = '#{node['commvault']['commcelluser']['password']}'
+$encryptedPassword = '#{node['commvault']['commcelluser']['encryptedpassword']}'
+
+$cmdArgs = @("-OpType 1000", "-clientName $clientName", "-clientHostName $clientHostName", "-CSName $csName", "-CSHost $csHost", "-instance $instance", "-output register.xml")
+if ($username){
+	$cmdArgs += "-user $username"
+}
+if ($password){
+	$cmdArgs += "-password $password"
+}
+if ($encryptedPassword){
+	$cmdArgs += "-passwordEncrypted $encryptedPassword"
+}
+
+&$cmd $cmdArgs
+    EOH
+  	action :run
+	
+end    
