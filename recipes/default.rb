@@ -83,7 +83,7 @@ function Execute-CommVaultRegisterClient(
     $p.Start() | Out-Null
     $p.WaitForExit()
 
-    if (($p.ExitCode -ne 0) -and ($p.ExitCode -ne -1)){
+    if (($p.ExitCode -ne 0) -and ($p.ExitCode -ne -1) -and ($p.ExitCode -ne 150995043)){
         throw "Failed to join client to comm vault server. Exit code was $($p.ExitCode)"
     }
 }
