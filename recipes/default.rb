@@ -60,7 +60,7 @@ function Execute-CommVaultRegisterClient(
         $cmd = Join-Path $commVaultDirectory 'base\\SIMCallWrapper.exe'
     }
 
-    $cmdArgs = "-OpType 1000 -clientName $clientName -clientHostName $clientHostName -CSName $csName -CSHost $csHost -instance $instance -output register.xml"
+    $cmdArgs = "-OpType 1000 -clientName $clientName -clientHostName $clientHostName -CSName $csName -CSHost $csHost -instance $instance -output register.xml -registerme -skipCertificateRevoke"
     if ($username){
       $cmdArgs += " -user $username"
     }
@@ -83,7 +83,7 @@ function Execute-CommVaultRegisterClient(
     $p.Start() | Out-Null
     $p.WaitForExit()
 
-    if (($p.ExitCode -ne 0) -and ($p.ExitCode -ne -1) -and ($p.ExitCode -ne 150995043)){
+    if (($p.ExitCode -ne 0) -and ($p.ExitCode -ne -1)){
         throw "Failed to join client to comm vault server. Exit code was $($p.ExitCode)"
     }
 }
@@ -103,5 +103,69 @@ Execute-CommVaultRegisterClient -clientName $clientName -clientHostName $clientH
 Exit 0
     EOH
   	action :run
-	
+	not_if <<-EOH
+$ErrorActionPreference="Stop"   
+
+function Open-CommVaultConnection(
+    $username,
+    $password,
+    $encryptedPassword,
+    $commVaultHostName,
+    $commVaultClientName,
+    $commVaultDirectory = 'C:\\Program Files\\CommVault\\Simpana'
+){
+    $cmd = "qlogin"
+    if (Test-Path (Join-Path $commVaultDirectory 'base\\QLogin.exe')){
+        $cmd = Join-Path $commVaultDirectory 'base\\QLogin.exe'
+    }
+
+    $cmdArgs = "-cs `"$commVaultHostName`" -csn `"$commVaultClientName`" -gt"
+
+    if ($username){
+      $cmdArgs += " -u $username"
+    }
+
+    if ($password){
+      $cmdArgs += " -p $password"
+    }
+    if ($encryptedPassword){
+      $cmdArgs += " -ps $encryptedPassword"
+    }
+
+    $pinfo = New-Object System.Diagnostics.ProcessStartInfo
+    $pinfo.FileName = $cmd
+    $pinfo.RedirectStandardError = $true
+    $pinfo.RedirectStandardOutput = $true
+    $pinfo.UseShellExecute = $false
+    $pinfo.Arguments = $cmdArgs
+
+    $p = New-Object System.Diagnostics.Process
+    $p.StartInfo = $pinfo
+    $p.Start() | Out-Null
+    $p.WaitForExit()
+
+    $stdout = $p.StandardOutput.ReadToEnd()
+    $stderr = $p.StandardError.ReadToEnd()
+
+    if ($p.ExitCode -ne 0){
+        throw "Login failed. $stderr"
+    }
+
+    return $stdout
+}
+
+$commVaultHostName = '#{node['commvault']['server']['hostName']}'
+$commVaultClientName = '#{node['commvault']['client']['clientName']}'
+$username = '#{node['commvault']['commcelluser']['username']}'
+$password = '#{node['commvault']['commcelluser']['password']}'
+$encryptedPassword = '#{node['commvault']['commcelluser']['encryptedpassword']}'
+$commVaultDirectory = '#{node['commvault']['installDirectory']}'
+
+try{
+    Open-CommVaultConnection -commVaultHostName $commVaultHostName -commVaultClientName $commVaultClientName -username $username -password $password -encryptedPassword $encryptedPassword -commVaultDirectory $commVaultDirectory
+    return $true
+} catch {
+    return $false
+}
+    EOH
 end    
