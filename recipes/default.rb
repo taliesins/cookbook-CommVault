@@ -53,15 +53,15 @@ $username = '#{node['commvault']['commcelluser']['username']}'
 $password = '#{node['commvault']['commcelluser']['password']}'
 $encryptedPassword = '#{node['commvault']['commcelluser']['encryptedpassword']}'
 
-$cmdArgs = @("-OpType 1000", "-clientName $clientName", "-clientHostName $clientHostName", "-CSName $csName", "-CSHost $csHost", "-instance $instance", "-output register.xml")
+$cmdArgs = @("-OpType", "1000", "-clientName", "$clientName", "-clientHostName", "$clientHostName", "-CSName", "$csName", "-CSHost", "$csHost", "-instance", "$instance", "-output", "register.xml")
 if ($username){
-	$cmdArgs += "-user $username"
+	$cmdArgs += "-user", "$username"
 }
 if ($password){
-	$cmdArgs += "-password $password"
+	$cmdArgs += "-password", "$password"
 }
 if ($encryptedPassword){
-	$cmdArgs += "-passwordEncrypted $encryptedPassword"
+	$cmdArgs += "-passwordEncrypted", "$encryptedPassword"
 }
 
 &$cmd $cmdArgs
