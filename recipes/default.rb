@@ -55,13 +55,16 @@ $encryptedPassword = '#{node['commvault']['commcelluser']['encryptedpassword']}'
 
 $cmdArgs = @("-OpType", "1000", "-clientName", "$clientName", "-clientHostName", "$clientHostName", "-CSName", "$csName", "-CSHost", "$csHost", "-instance", "$instance", "-output", "register.xml")
 if ($username){
-	$cmdArgs += "-user", "$username"
+	$cmdArgs += "-user"
+  $cmdArgs += "$username"
 }
 if ($password){
-	$cmdArgs += "-password", "$password"
+	$cmdArgs += "-password"
+  $cmdArgs += "$password"
 }
 if ($encryptedPassword){
-	$cmdArgs += "-passwordEncrypted", "$encryptedPassword"
+	$cmdArgs += "-passwordEncrypted"
+  $cmdArgs += "$encryptedPassword"
 }
 
 &$cmd $cmdArgs
