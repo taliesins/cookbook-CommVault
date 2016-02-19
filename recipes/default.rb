@@ -73,9 +73,9 @@ function Execute-CommVaultRegisterClient(
 
     $pinfo = New-Object System.Diagnostics.ProcessStartInfo
     $pinfo.FileName = $cmd
-    $pinfo.RedirectStandardError = $true
-    $pinfo.RedirectStandardOutput = $true
-    $pinfo.UseShellExecute = $false
+    $pinfo.RedirectStandardError = $false
+    $pinfo.RedirectStandardOutput = $false
+    $pinfo.UseShellExecute = $true
     $pinfo.Arguments = $cmdArgs
 
     $p = New-Object System.Diagnostics.Process
@@ -83,11 +83,8 @@ function Execute-CommVaultRegisterClient(
     $p.Start() | Out-Null
     $p.WaitForExit()
 
-    $stdout = $p.StandardOutput.ReadToEnd()
-    $stderr = $p.StandardError.ReadToEnd()
-
-    if ($p.ExitCode -ne 0){
-        throw "Failed to execute operation. $stderr"
+    if (($p.ExitCode -ne 0) -and ($p.ExitCode -ne -1)){
+        throw "Failed to join client to comm vault server."
     }
 }
 
@@ -102,6 +99,8 @@ $encryptedPassword = '#{node['commvault']['commcelluser']['encryptedpassword']}'
 $commVaultDirectory = '#{node['commvault']['installDirectory']}'
 
 Execute-CommVaultRegisterClient -clientName $clientName -clientHostName $clientHostName -csName $csName -csHost $csHost -instance $instance -username $username -password $password -encryptedPassword $encryptedPassword -commVaultDirectory $commVaultDirectory
+
+Exit 0
     EOH
   	action :run
 	
