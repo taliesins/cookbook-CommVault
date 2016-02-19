@@ -56,7 +56,7 @@ function Execute-CommVaultRegisterClient(
     $commVaultDirectory = 'C:\\Program Files\\CommVault\\Simpana'
 ){
     $cmd = "SIMCallWrapper"
-    if (Test-Path (Join-Path $commVaultDirectory 'base\\SIMCallWrapper.exe'){
+    if (Test-Path (Join-Path $commVaultDirectory 'base\\SIMCallWrapper.exe')){
         $cmd = Join-Path $commVaultDirectory 'base\\SIMCallWrapper.exe'
     }
 
