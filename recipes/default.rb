@@ -43,7 +43,54 @@ powershell_script 'Register client with comm vault server' do
     guard_interpreter :powershell_script
     code <<-EOH
 $ErrorActionPreference="Stop"
-$cmd = join-path '#{node['commvault']['installDirectory']}' 'base\\SIMCallWrapper.exe'
+
+function Execute-CommVaultRegisterClient(
+    $clientName,
+    $clientHostName,
+    $csName,
+    $csHost,
+    $instance,
+    $username,
+    $password,
+    $encryptedPassword,
+    $commVaultDirectory = 'C:\\Program Files\\CommVault\\Simpana'
+){
+    $cmd = "SIMCallWrapper"
+    if (Test-Path (Join-Path $commVaultDirectory 'base\\SIMCallWrapper.exe'){
+        $cmd = Join-Path $commVaultDirectory 'base\\SIMCallWrapper.exe'
+    }
+
+    $cmdArgs = "-OpType 1000 -clientName $clientName -clientHostName $clientHostName -CSName $csName -CSHost $csHost -instance $instance -output register.xml"
+    if ($username){
+      $cmdArgs += " -user $username"
+    }
+    if ($password){
+      $cmdArgs += " -password $password"
+    }
+    if ($encryptedPassword){
+      $cmdArgs += " -passwordEncrypted $encryptedPassword"
+    } 
+
+    $pinfo = New-Object System.Diagnostics.ProcessStartInfo
+    $pinfo.FileName = $cmd
+    $pinfo.RedirectStandardError = $true
+    $pinfo.RedirectStandardOutput = $true
+    $pinfo.UseShellExecute = $false
+    $pinfo.Arguments = $cmdArgs
+
+    $p = New-Object System.Diagnostics.Process
+    $p.StartInfo = $pinfo
+    $p.Start() | Out-Null
+    $p.WaitForExit()
+
+    $stdout = $p.StandardOutput.ReadToEnd()
+    $stderr = $p.StandardError.ReadToEnd()
+
+    if ($p.ExitCode -ne 0){
+        throw "Failed to execute operation. $stderr"
+    }
+}
+
 $clientName = '#{node['commvault']['client']['clientName']}'
 $clientHostName = '#{node['commvault']['client']['hostName']}'
 $csName = '#{node['commvault']['server']['clientName']}'
@@ -52,22 +99,9 @@ $instance = '#{node['commvault']['instanceName']}'
 $username = '#{node['commvault']['commcelluser']['username']}'
 $password = '#{node['commvault']['commcelluser']['password']}'
 $encryptedPassword = '#{node['commvault']['commcelluser']['encryptedpassword']}'
+$commVaultDirectory = '#{node['commvault']['installDirectory']}'
 
-$cmdArgs = @("-OpType", "1000", "-clientName", "$clientName", "-clientHostName", "$clientHostName", "-CSName", "$csName", "-CSHost", "$csHost", "-instance", "$instance", "-output", "register.xml")
-if ($username){
-	$cmdArgs += "-user"
-  $cmdArgs += "$username"
-}
-if ($password){
-	$cmdArgs += "-password"
-  $cmdArgs += "$password"
-}
-if ($encryptedPassword){
-	$cmdArgs += "-passwordEncrypted"
-  $cmdArgs += "$encryptedPassword"
-}
-
-&$cmd $cmdArgs
+Execute-CommVaultRegisterClient -clientName $clientName -clientHostName $clientHostName -csName $csName -csHost $csHost -instance $instance -username $username -password $password -encryptedPassword $encryptedPassword -commVaultDirectory $commVaultDirectory
     EOH
   	action :run
 	
