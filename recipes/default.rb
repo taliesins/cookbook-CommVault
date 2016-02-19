@@ -84,7 +84,7 @@ function Execute-CommVaultRegisterClient(
     $p.WaitForExit()
 
     if (($p.ExitCode -ne 0) -and ($p.ExitCode -ne -1)){
-        throw "Failed to join client to comm vault server."
+        throw "Failed to join client to comm vault server. Exit code was $($p.ExitCode)"
     }
 }
 
