@@ -83,7 +83,9 @@ function Execute-CommVaultRegisterClient(
     $p.Start() | Out-Null
     $p.WaitForExit()
 
-    if (($p.ExitCode -ne 0) -and ($p.ExitCode -ne -1)){
+    if ($p.ExitCode -eq 150995043){
+        throw "The client and server certificates do not match. Release license for the client and then delete it from CommVault server, then run again. Failed to join client to comm vault server. Exit code was $($p.ExitCode)"
+    } elseif (($p.ExitCode -ne 0) -and ($p.ExitCode -ne -1)){
         throw "Failed to join client to comm vault server. Exit code was $($p.ExitCode)"
     }
 }
