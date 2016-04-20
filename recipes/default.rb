@@ -84,6 +84,31 @@ function Execute-CommVaultRegisterClient(
     $p.WaitForExit()
 
     if ($p.ExitCode -eq 150995043){
+        $cmdArgs = "-OpType 1000 -clientName $clientName -clientHostName $clientHostName -CSName $csName -CSHost $csHost -instance $instance -output register.xml -registerme"
+        if ($username){
+          $cmdArgs += " -user $username"
+        }
+        if ($password){
+          $cmdArgs += " -password $password"
+        }
+        if ($encryptedPassword){
+          $cmdArgs += " -passwordEncrypted $encryptedPassword"
+        } 
+
+        $pinfo = New-Object System.Diagnostics.ProcessStartInfo
+        $pinfo.FileName = $cmd
+        $pinfo.RedirectStandardError = $false
+        $pinfo.RedirectStandardOutput = $false
+        $pinfo.UseShellExecute = $true
+        $pinfo.Arguments = $cmdArgs
+
+        $p = New-Object System.Diagnostics.Process
+        $p.StartInfo = $pinfo
+        $p.Start() | Out-Null
+        $p.WaitForExit()
+    }
+
+    if ($p.ExitCode -eq 150995043){
         throw "The client and server certificates do not match. Release license for the client and then delete it from CommVault server, then run again. Failed to join client to comm vault server. Exit code was $($p.ExitCode)"
     } elseif (($p.ExitCode -ne 0) -and ($p.ExitCode -ne -1)){
         throw "Failed to join client to comm vault server. Exit code was $($p.ExitCode)"
