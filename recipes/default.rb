@@ -120,9 +120,9 @@ $clientHostName = '#{node['commvault']['client']['hostName']}'
 $csName = '#{node['commvault']['server']['clientName']}'
 $csHost = '#{node['commvault']['server']['hostName']}'
 $instance = '#{node['commvault']['instanceName']}'
-$username = '#{node['commvault']['commcelluser']['username']}'
-$password = '#{node['commvault']['commcelluser']['password']}'
-$encryptedPassword = '#{node['commvault']['commcelluser']['encryptedpassword']}'
+$username = '#{node['commvault']['client']['domainName']}\\#{node['commvault']['client']['userName']}'
+$password = ''
+$encryptedPassword = '#{node['commvault']['client']['encryptedPassword']}'
 $commVaultDirectory = '#{node['commvault']['installDirectory']}'
 
 Execute-CommVaultRegisterClient -clientName $clientName -clientHostName $clientHostName -csName $csName -csHost $csHost -instance $instance -username $username -password $password -encryptedPassword $encryptedPassword -commVaultDirectory $commVaultDirectory
@@ -183,9 +183,9 @@ function Open-CommVaultConnection(
 
 $commVaultHostName = '#{node['commvault']['server']['hostName']}'
 $commVaultClientName = '#{node['commvault']['client']['clientName']}'
-$username = '#{node['commvault']['commcelluser']['username']}'
-$password = '#{node['commvault']['commcelluser']['password']}'
-$encryptedPassword = '#{node['commvault']['commcelluser']['encryptedpassword']}'
+$username = '#{node['commvault']['client']['domainName']}\\#{node['commvault']['client']['userName']}'
+$password = ''
+$encryptedPassword = '#{node['commvault']['client']['encryptedPassword']}'
 $commVaultDirectory = '#{node['commvault']['installDirectory']}'
 
 try{
