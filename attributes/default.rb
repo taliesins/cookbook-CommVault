@@ -63,4 +63,4 @@ default['commvault']['packagetype'] = 'WinX64'
 default['commvault']['filename'] = default['commvault']['packagename'] + '_' + default['commvault']['packagetype']
 default['commvault']['filenameextension'] = 'exe'
 default['commvault']['url'] = 'http://www.yourserver.com/' + default['commvault']['filename'] + '.' + default['commvault']['filenameextension'] 
-default['commvault']['checksum'] = '3a0ec7a62f82087a474878e7008f80c8f09eca52a6c5654c52577f62d67d85c5'
+default['commvault']['checksum'] = '81c8bb872ecbb66acfc5879229daea72a51ef64af4fb2f91f21e906bf49aaeb8'
