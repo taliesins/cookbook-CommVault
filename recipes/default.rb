@@ -45,7 +45,7 @@ powershell_script 'Register client with comm vault server' do
 $ErrorActionPreference="Stop"   
 
 function Get-CommVaultCommandPath($cmd){
-    $paths="#{node['commvault']['installDirectory']}",C:\Program Files\CommVault\Simpana\Base", "C:\Program Files\CommVault\ContentStore\Base", "C:\Program Files\CommVault\ContentStore2\Base"
+    $paths="#{node['commvault']['installDirectory']}",C:\\Program Files\\CommVault\\Simpana\\Base", "C:\\Program Files\\CommVault\\ContentStore\\Base"
     foreach ($path in $paths){
         $cmdPath = join-path $path "$($cmd).exe"
 
