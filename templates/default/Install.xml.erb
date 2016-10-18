@@ -13,9 +13,9 @@
             <storagePolicyToUse storagePolicyName="CV_DEFAULT" storagePolicyId="1" />
          </commonInfo>
          <fileSystem configureForLaptopBackups="0" />
-         <componentInfo ComponentName="File System Core" consumeLicense="0" ComponentId="1" />
-         <componentInfo ComponentName="SQL Server" consumeLicense="0" ComponentId="353" />
-         <componentInfo ComponentName="File System" consumeLicense="0" ComponentId="702" />
+         <componentInfo ComponentName="File System Core" consumeLicense="1" ComponentId="1" />
+         <componentInfo ComponentName="SQL Server" consumeLicense="1" ComponentId="353" />
+         <componentInfo ComponentName="File System" consumeLicense="1" ComponentId="702" />
       </components>
       <clientInfo>
          <clientProps ClientInterface="" BinarySetID="3" byteOrder="Little-endian" />
@@ -40,17 +40,19 @@
    <Dialogs name="InstallerBA.ViewModels.FeatureSelectionViewModel" show="0" />
    <Dialogs name="InstallerBA.ViewModels.CustomPackageOptionsViewModel" show="0" />
    <Dialogs name="InstallerBA.ViewModels.InstanceSelectionViewModel" show="1" />
-   <Dialogs name="InstallerBA.ViewModels.GalaxyHomePathViewModel" show="1" />
-   <Dialogs name="InstallerBA.ViewModels.ConfigureLaptopViewModel" show="0" />
+   <Dialogs name="InstallerBA.ViewModels.GalaxyHomePathViewModel" show="0" />
+   <Dialogs name="InstallerBA.ViewModels.ConfigureLaptopViewModel" show="1" />
    <Dialogs name="ConfigureClientTool.ViewModels.FirewallConfigurationViewModel" show="1" />
    <Dialogs name="ConfigureClientTool.ViewModels.CommServeNameViewModel" show="1" />
+   <Dialogs name="ConfigureClientTool.ViewModels.ClientCertificateViewModel" show="0" />
    <Dialogs name="ConfigureClientTool.ViewModels.FirewallConnectionTunnelPortViewModel" show="1" />
    <Dialogs name="ConfigureClientTool.ViewModels.FirewallHttpProxyViewModel" show="0" />
    <Dialogs name="ConfigureClientTool.ViewModels.ClientCertificateViewModel" show="0" />
    <Dialogs name="ConfigureClientTool.ViewModels.RunFirewallDaemonViewModel" show="1" />
    <Dialogs name="ConfigureClientTool.ViewModels.SIMGetInfoFromCommServeViewModel" show="1" />
    <Dialogs name="ConfigureClientTool.ViewModels.SIMInstallRequirementCheckViewModel" show="1" />
-   <Dialogs name="ConfigureClientTool.ViewModels.PolicyGroupConfigureLaptopViewModel" show="1" />
+   <Dialogs name="InstallCommon.ViewModels.ClientAuthenticationInfoViewModel" show="1" />
+   <Dialogs name="ConfigureClientTool.ViewModels.PolicyGroupConfigureLaptopViewModel" show="0" />
    <Dialogs name="InstallerBA.ViewModels.CompletionExitViewModel" show="1" />
    <Dialogs name="InstallerBA.ViewModels.InstallSummaryViewModel" show="0" />
    <Dialogs name="InstallerBA.ViewModels.InstallOptionViewModel" show="0" />
