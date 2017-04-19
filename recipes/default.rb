@@ -33,7 +33,6 @@ template install_configuration_path do
 end
 
 windows_package node['commvault']['name'] do
-	checksum node['commvault']['checksum']
 	source "#{install_path}/Setup.exe"
 	installer_type :custom
 	options "/Silent /play \"#{install_configuration_path}\""
