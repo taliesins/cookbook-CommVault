@@ -1135,6 +1135,16 @@ template "#{node['commvault']['installDirectory']}Base\\SQLBackup.exe.config" do
   source 'SQLBackup.exe.config.erb'
 end
 
+registry_key "HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\MSSQLAgent" do
+    values [{
+        :name => 'SqlFactoryUse40',
+        :type => :dword,
+        :data => 1
+        }]
+        notifies :run, 'powershell_script[Register sql client library dll]', :immediately
+        action :create
+end
+
 powershell_script 'Register sql client library dll' do
     guard_interpreter :powershell_script
     code <<-EOH
@@ -1152,14 +1162,4 @@ end
 
 windows_service "GxCVD(#{node['commvault']['instanceName']})" do
   	action :nothing
-end
-
-registry_key "HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\MSSQLAgent" do
-    values [{
-        :name => 'SqlFactoryUse40',
-        :type => :dword,
-        :data => 1
-        }]
-        notifies :run, 'powershell_script[Register sql client library dll]', :immediately
-        action :create
 end
