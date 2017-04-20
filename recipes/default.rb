@@ -1156,10 +1156,16 @@ $DllToRegisterPath = '#{node['commvault']['installDirectory']}Base\\CvSQLSmoV4Fa
 
 Exit 0
     EOH
-    notifies :restart, "windows_service[GxCVD(#{node['commvault']['instanceName']})]", :immediately
+    notifies :run, "powershell_script[Restart all CommVault services]", :immediately
   	action :nothing
 end    
 
-windows_service "GxCVD(#{node['commvault']['instanceName']})" do
+powershell_script 'Restart all CommVault services' do
+    guard_interpreter :powershell_script
+    code <<-EOH
+$ErrorActionPreference="Stop"
+restart-service '#{node['commvault']['instanceName']}' -force
+Exit 0
+    EOH
   	action :nothing
-end
+end 
