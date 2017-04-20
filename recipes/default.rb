@@ -1163,8 +1163,8 @@ end
 powershell_script 'Restart all CommVault services' do
     guard_interpreter :powershell_script
     code <<-EOH
-$ErrorActionPreference="Stop"
-restart-service '#{node['commvault']['instanceName']}' -force
+$ErrorActionPreference='Stop'
+restart-service 'GxCVD(#{node['commvault']['instanceName']})' -force
 Exit 0
     EOH
   	action :nothing
