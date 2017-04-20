@@ -1131,18 +1131,35 @@ windows_firewall_rule 'CommVault_Process_zip' do
     firewall_action :allow
 end
 
+template "#{node['commvault']['installDirectory']}Base\\SQLBackup.exe.config" do
+  source 'SQLBackup.exe.config.erb'
+end
+
+powershell_script 'Register sql client library dll' do
+    guard_interpreter :powershell_script
+    code <<-EOH
+$ErrorActionPreference="Stop"
+$RegasmPath = Join-Path $env:SystemRoot 'Microsoft.Net\\Framework64\\v4.0.30319\\RegAsm.exe'
+$DllToRegisterPath = '#{node['commvault']['installDirectory']}Base\\CvSQLSmoV4Factory.dll'
+
+&$RegasmPath $DllToRegisterPath
+
+Exit 0
+    EOH
+    notifies :restart, "windows_service[GxCVD(#{node['commvault']['instanceName']})]", :immediately
+  	action :nothing
+end    
+
+windows_service "GxCVD(#{node['commvault']['instanceName']})" do
+  	action :nothing
+end
+
 registry_key "HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\MSSQLAgent" do
     values [{
         :name => 'SqlFactoryUse40',
         :type => :dword,
         :data => 1
         }]
+        notifies :run, 'powershell_script[Register sql client library dll]', :immediately
         action :create
-end
-
-template "#{node['commvault']['installDirectory']}Base\\SQLBackup.exe.config" do
-  source 'SQLBackup.exe.config.erb'
-end
-
-execute "\"%SystemRoot%\\Microsoft.Net\\Framework64\\v4.0.30319\\RegAsm.exe\" \"#{node['commvault']['installDirectory']}Base\\CvSQLSmoV4Factory.dll\"" do
 end
