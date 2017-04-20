@@ -1130,3 +1130,19 @@ windows_firewall_rule 'CommVault_Process_zip' do
     program "#{node['commvault']['installDirectory']}\\zip.exe"
     firewall_action :allow
 end
+
+registry_key "HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\MSSQLAgent" do
+    values [{
+        :name => 'SqlFactoryUse40',
+        :type => :dword,
+        :data => 1
+        }]
+        action :create
+end
+
+template "#{node['commvault']['installDirectory']}Base\\SQLBackup.exe.config" do
+  source 'SQLBackup.exe.config.erb'
+end
+
+execute "\"%SystemRoot%\\Microsoft.Net\\Framework64\\v4.0.30319\\RegAsm.exe\" \"#{node['commvault']['installDirectory']}Base\\CvSQLSmoV4Factory.dll\"" do
+end
