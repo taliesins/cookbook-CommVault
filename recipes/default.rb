@@ -68,7 +68,6 @@ function Register-CommVaultClientWithSimWrapper(
     $encryptedPassword
 ){
     $cmd = Get-CommVaultCommandPath("SIMCallWrapper")
-
     $cmdArgs = "-OpType 1000 -CSName `"$csName`" -CSHost `"$csHost`" -instance `"$instance`" -output `"register.xml`" -registerme -skipCertificateRevoke"
     if ($clientName){
         $cmdArgs += " -clientName `"$clientName`""
@@ -150,7 +149,6 @@ function Open-CommVaultConnection(
     $commVaultClientName
 ){
     $cmd = Get-CommVaultCommandPath("qlogin")
-
     $cmdArgs = "-u $username -ps $encryptedPassword -cs `"$commVaultHostName`" -csn `"$commVaultClientName`" -gt"
 
     $pinfo = New-Object System.Diagnostics.ProcessStartInfo
@@ -180,7 +178,6 @@ function Close-CommVaultConnection(
     $commVaultHostName
 ){
     $cmd = Get-CommVaultCommandPath("qlogout")
-
     $cmdArgs = "-cs `"$commVaultHostName`" -tk `"$loginToken`""
 
     $pinfo = New-Object System.Diagnostics.ProcessStartInfo
@@ -210,20 +207,13 @@ function Open-CommVaultConnection(
     $password,
     $encryptedPassword,
     $commVaultHostName,
-    $commVaultClientName,
-    $commVaultDirectory = 'C:\\Program Files\\CommVault\\Simpana'
+    $commVaultClientName
 ){
-    $cmd = "qlogin"
-    if (Test-Path (Join-Path $commVaultDirectory 'base\\QLogin.exe')){
-        $cmd = Join-Path $commVaultDirectory 'base\\QLogin.exe'
-    }
-
+    $cmd = Get-CommVaultCommandPath("qlogin")
     $cmdArgs = "-cs `"$commVaultHostName`" -csn `"$commVaultClientName`" -gt"
-
     if ($username){
       $cmdArgs += " -u $username"
     }
-
     if ($password){
       $cmdArgs += " -p $password"
     }
@@ -261,14 +251,9 @@ function Execute-CommVaultRegisterClient(
     $instance,
     $username,
     $password,
-    $encryptedPassword,
-    $commVaultDirectory = 'C:\\Program Files\\CommVault\\Simpana'
+    $encryptedPassword
 ){
-    $cmd = "SIMCallWrapper"
-    if (Test-Path (Join-Path $commVaultDirectory 'base\\SIMCallWrapper.exe')){
-        $cmd = Join-Path $commVaultDirectory 'base\\SIMCallWrapper.exe'
-    }
-
+    $cmd = Get-CommVaultCommandPath("SIMCallWrapper")
     $cmdArgs = "-OpType 1000 -clientName $clientName -clientHostName $clientHostName -CSName $csName -CSHost $csHost -instance $instance -output register.xml -registerme -skipCertificateRevoke"
     if ($username){
       $cmdArgs += " -user $username"
@@ -330,7 +315,6 @@ function Register-CommVaultClient(
     $clientHostName
 ) {
     $cmd = Get-CommVaultCommandPath("qoperation")
-
     $cmdArgs = "register -cs `"$commVaultHostName`" -hn `"$clientHostName`" -tk `"$loginToken`" -dock yes"
 
     $pinfo = New-Object System.Diagnostics.ProcessStartInfo
@@ -360,15 +344,14 @@ function Get-CommVaultClientsForGroup(
     $commVaultHostName,
     $clientGroupName
 ){
-    $tmpFile = [System.IO.Path]::GetTempFileName() + ".xml"
-
     $cmd = Get-CommVaultCommandPath("qlist")
-
     $cmdArgs = "client -cs `"$commVaultHostName`" -tk `"$loginToken`""
 
     if ($clientGroupName) {
         $cmdArgs = " -cg `"$clientGroupName`""
     }
+
+    $tmpFile = [System.IO.Path]::GetTempFileName() + ".xml"
 
     try {
         if (Test-Path $tmpFile) {
@@ -426,12 +409,16 @@ $csName = '#{node['commvault']['server']['clientName']}'
 $csHost = '#{node['commvault']['server']['hostName']}'
 $commVaultHostName = $csHost
 $commVaultClientName = $csName
-$clientGroupName = 'APP - Portal Dynamic'
+$clientGroupName = '#{node['commvault']['client']['groupName']}'
 $instance = '#{node['commvault']['instanceName']}'
-$username = '#{node['commvault']['client']['domainName']}\\#{node['commvault']['client']['userName']}'
-$password = ''
+$domain = '#{node['commvault']['commandLine']['domainName']}'
+$username = '#{node['commvault']['commandLine']['userName']}'
 $clientGroupName = '#{node['commvault']['client']['groupName']}'
 $encryptedPassword = '#{node['commvault']['client']['encryptedPassword']}'
+
+if ($domain) {
+    $username = "$domain\\$username"
+}
 
 try{
     $loginToken = Open-CommVaultConnection -username $username -encryptedPassword $encryptedPassword -commVaultHostName $commVaultHostName -commVaultClientName $commVaultClientName

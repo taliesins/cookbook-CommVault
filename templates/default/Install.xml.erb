@@ -25,9 +25,6 @@
             <versionInfo GalaxyBuildNumber="BUILD80">
                <GalaxyRelease ReleaseString="11.0" />
             </versionInfo>
-            <osInfo Type="Windows" SubType="Server" Version="6.2" PlatformType="X64">
-               <OsDisplayInfo ProcessorType="WinX64" OSName="Windows Server 2012 R2 Standard" OSBuild="9200" />
-            </osInfo>
          </client>
       </clientInfo>
    </clientComposition>
@@ -57,6 +54,6 @@
    <Dialogs name="InstallerBA.ViewModels.InstallSummaryViewModel" show="0" />
    <Dialogs name="InstallerBA.ViewModels.InstallOptionViewModel" show="0" />
    <ClientAuthentication>
-      <userAccountToLogin domainName="<%= node['commvault']['client']['domainName'] %>" userName="<%= node['commvault']['client']['userName'] %>" />
+      <userAccountToLogin domainName="<%= node['commvault']['userAccountToLogin']['domainName'] %>" userName="<%= node['commvault']['userAccountToLogin']['userName'] %>"<% if !node['commvault']['userAccountToLogin']['encryptedPassword'].to_s.empty? %> password="<%= node['commvault']['userAccountToLogin']['encryptedPassword'] %>"<% end %> />
    </ClientAuthentication>
 </CVInstallManager_ClientSetup>

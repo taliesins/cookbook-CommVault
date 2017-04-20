@@ -24,6 +24,7 @@ default['commvault']['server']['hostName'] = 'commvault.yourserver.com'
 default['commvault']['client']['clientName'] = node['hostname']
 default['commvault']['client']['hostName'] = node['fqdn']
 default['commvault']['client']['groupName'] = ''
+default['commvault']['client']['encryptedPassword'] = ''
 
 default['commvault']['installFlags']['addToFirewallExclusion'] = '1'
 default['commvault']['installFlags']['autoRegister'] = '1'
@@ -54,9 +55,13 @@ default['commvault']['firewallInstall']['portNumber'] = '8403'
 default['commvault']['firewallInstall']['proxyClientName'] = ''
 default['commvault']['firewallInstall']['proxyHostName'] = ''
 
-default['commvault']['client']['domainName'] = ''
-default['commvault']['client']['userName'] = ''
-default['commvault']['client']['encryptedPassword'] = ''
+default['commvault']['userAccountToLogin']['domainName'] = ''
+default['commvault']['userAccountToLogin']['userName'] = ''
+default['commvault']['userAccountToLogin']['encryptedPassword'] = ''
+
+default['commvault']['commandLine']['domainName'] = ''
+default['commvault']['commandLine']['userName'] = ''
+default['commvault']['commandLine']['encryptedPassword'] = ''
 
 default['commvault']['name'] = 'CommVault File System Core (' + default['commvault']['instanceName'] + ')'
 default['commvault']['packagename'] = 'CommVault-Client'
