@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe '7-zip'
+include_recipe 'seven-zip'
 
 ::Chef::Recipe.send(:include, Windows::Helper)
 
@@ -24,7 +24,7 @@ remote_file download_path do
 end
 
 execute 'extract_commvault' do
-  command "\"#{File.join(node['7-zip']['home'], '7z.exe')}\" x -y -o\"#{winfriendly_extract_path}\" \"#{download_path}\""
+  command "\"#{File.join(node['seven-zip']['home'], '7z.exe')}\" x -y -o\"#{winfriendly_extract_path}\" \"#{download_path}\""
   only_if {!(::File.directory?(download_path)) }
 end
 
