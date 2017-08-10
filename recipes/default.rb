@@ -442,693 +442,714 @@ end
 #PS C:\Program Files\CommVault\Simpana\Base> get-item *.exe | %{ $_.Name -replace '.exe'  } | %{ "windows_firewall_rule 'CommVault_Process_$_' do`r`n`tprogram `"#{node['commvault']['installDirectory']}\\$_.exe`"`r`n`tfirewall_action :allow`r`nend`r`n"} | clip
 
 windows_firewall_rule 'CommVault_Process_7z' do
-    program "#{node['commvault']['installDirectory']}\\7z.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\7z.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_adLdapTool' do
-    program "#{node['commvault']['installDirectory']}\\adLdapTool.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\adLdapTool.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_AuditQiNetix' do
-    program "#{node['commvault']['installDirectory']}\\AuditQiNetix.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\AuditQiNetix.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_AuthorUtil' do
-    program "#{node['commvault']['installDirectory']}\\AuthorUtil.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\AuthorUtil.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_BLKWinSetup' do
-    program "#{node['commvault']['installDirectory']}\\BLKWinSetup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\BLKWinSetup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_BlockRestore' do
-    program "#{node['commvault']['installDirectory']}\\BlockRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\BlockRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CLAFRestore' do
-    program "#{node['commvault']['installDirectory']}\\CLAFRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CLAFRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CLBackup' do
-    program "#{node['commvault']['installDirectory']}\\CLBackup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CLBackup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_clBackupXP' do
-    program "#{node['commvault']['installDirectory']}\\clBackupXP.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\clBackupXP.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CLDBengine' do
-    program "#{node['commvault']['installDirectory']}\\CLDBengine.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CLDBengine.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_ClDctmFTIBackup' do
-    program "#{node['commvault']['installDirectory']}\\ClDctmFTIBackup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\ClDctmFTIBackup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_ClDctmScan' do
-    program "#{node['commvault']['installDirectory']}\\ClDctmScan.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\ClDctmScan.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CLIFRestore' do
-    program "#{node['commvault']['installDirectory']}\\CLIFRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CLIFRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_ClMgrS' do
-    program "#{node['commvault']['installDirectory']}\\ClMgrS.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\ClMgrS.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CLReboot' do
-    program "#{node['commvault']['installDirectory']}\\CLReboot.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CLReboot.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CLRestore' do
-    program "#{node['commvault']['installDirectory']}\\CLRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CLRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_ConfigureClientTool' do
-    program "#{node['commvault']['installDirectory']}\\ConfigureClientTool.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\ConfigureClientTool.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVBlkLevelBackup' do
-    program "#{node['commvault']['installDirectory']}\\CVBlkLevelBackup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVBlkLevelBackup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVCacheSet' do
-    program "#{node['commvault']['installDirectory']}\\CVCacheSet.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVCacheSet.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVClusterNotify' do
-    program "#{node['commvault']['installDirectory']}\\CVClusterNotify.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVClusterNotify.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_cvcl_test' do
-    program "#{node['commvault']['installDirectory']}\\cvcl_test.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\cvcl_test.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_cvcl_ver' do
-    program "#{node['commvault']['installDirectory']}\\cvcl_ver.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\cvcl_ver.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVConvertUnicode' do
-    program "#{node['commvault']['installDirectory']}\\CVConvertUnicode.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVConvertUnicode.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_cvd' do
-    program "#{node['commvault']['installDirectory']}\\cvd.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\cvd.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvDiagnostics' do
-    program "#{node['commvault']['installDirectory']}\\CvDiagnostics.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvDiagnostics.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVDiskPerf' do
-    program "#{node['commvault']['installDirectory']}\\CVDiskPerf.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVDiskPerf.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVExpPluginRegSvr' do
-    program "#{node['commvault']['installDirectory']}\\CVExpPluginRegSvr.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVExpPluginRegSvr.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVForeignHandler' do
-    program "#{node['commvault']['installDirectory']}\\CVForeignHandler.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVForeignHandler.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVFSSnap' do
-    program "#{node['commvault']['installDirectory']}\\CVFSSnap.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVFSSnap.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVGACUtil' do
-    program "#{node['commvault']['installDirectory']}\\CVGACUtil.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVGACUtil.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVGACUtil40' do
-    program "#{node['commvault']['installDirectory']}\\CVGACUtil40.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVGACUtil40.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVIPInfo' do
-    program "#{node['commvault']['installDirectory']}\\CVIPInfo.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVIPInfo.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVLegalHold' do
-    program "#{node['commvault']['installDirectory']}\\CVLegalHold.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVLegalHold.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVMapDrive' do
-    program "#{node['commvault']['installDirectory']}\\CVMapDrive.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVMapDrive.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVMountImage' do
-    program "#{node['commvault']['installDirectory']}\\CVMountImage.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVMountImage.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVNetChk' do
-    program "#{node['commvault']['installDirectory']}\\CVNetChk.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVNetChk.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVNetworkTestTool' do
-    program "#{node['commvault']['installDirectory']}\\CVNetworkTestTool.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVNetworkTestTool.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVNRDS' do
-    program "#{node['commvault']['installDirectory']}\\CVNRDS.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVNRDS.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVODS' do
-    program "#{node['commvault']['installDirectory']}\\CVODS.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVODS.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVPing' do
-    program "#{node['commvault']['installDirectory']}\\CVPing.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVPing.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVPLink' do
-    program "#{node['commvault']['installDirectory']}\\CVPLink.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVPLink.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvPostOps' do
-    program "#{node['commvault']['installDirectory']}\\CvPostOps.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvPostOps.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVPSCP' do
-    program "#{node['commvault']['installDirectory']}\\CVPSCP.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVPSCP.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVRenameDirChange' do
-    program "#{node['commvault']['installDirectory']}\\CVRenameDirChange.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVRenameDirChange.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVRestart' do
-    program "#{node['commvault']['installDirectory']}\\CVRestart.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVRestart.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVRetrieveResults' do
-    program "#{node['commvault']['installDirectory']}\\CVRetrieveResults.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVRetrieveResults.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_cvsleep' do
-    program "#{node['commvault']['installDirectory']}\\cvsleep.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\cvsleep.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVSPBackup' do
-    program "#{node['commvault']['installDirectory']}\\CVSPBackup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVSPBackup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVSPBackup2013' do
-    program "#{node['commvault']['installDirectory']}\\CVSPBackup2013.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVSPBackup2013.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvSQLAddInConfig' do
-    program "#{node['commvault']['installDirectory']}\\CvSQLAddInConfig.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvSQLAddInConfig.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvSQLBackup' do
-    program "#{node['commvault']['installDirectory']}\\CvSQLBackup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvSQLBackup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvSQLBackupProxy' do
-    program "#{node['commvault']['installDirectory']}\\CvSQLBackupProxy.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvSQLBackupProxy.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvSQLBackupUtility' do
-    program "#{node['commvault']['installDirectory']}\\CvSQLBackupUtility.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvSQLBackupUtility.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVSQLDBArchive' do
-    program "#{node['commvault']['installDirectory']}\\CVSQLDBArchive.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVSQLDBArchive.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVSQLDBBackup' do
-    program "#{node['commvault']['installDirectory']}\\CVSQLDBBackup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVSQLDBBackup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvSqlLogBackupUtility' do
-    program "#{node['commvault']['installDirectory']}\\CvSqlLogBackupUtility.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvSqlLogBackupUtility.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvSQLQCmd' do
-    program "#{node['commvault']['installDirectory']}\\CvSQLQCmd.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvSQLQCmd.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvSQLRestore' do
-    program "#{node['commvault']['installDirectory']}\\CvSQLRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvSQLRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvSQLRestoreProxy' do
-    program "#{node['commvault']['installDirectory']}\\CvSQLRestoreProxy.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvSQLRestoreProxy.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVSVCStat' do
-    program "#{node['commvault']['installDirectory']}\\CVSVCStat.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVSVCStat.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CvSyncProxy' do
-    program "#{node['commvault']['installDirectory']}\\CvSyncProxy.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CvSyncProxy.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVSystemTray' do
-    program "#{node['commvault']['installDirectory']}\\CVSystemTray.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVSystemTray.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVVDTool' do
-    program "#{node['commvault']['installDirectory']}\\CVVDTool.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVVDTool.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVVersion' do
-    program "#{node['commvault']['installDirectory']}\\CVVersion.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVVersion.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVVICleanup' do
-    program "#{node['commvault']['installDirectory']}\\CVVICleanup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVVICleanup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVVIRestore' do
-    program "#{node['commvault']['installDirectory']}\\CVVIRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVVIRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_CVVSSnap' do
-    program "#{node['commvault']['installDirectory']}\\CVVSSnap.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\CVVSSnap.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_DlpRecaller' do
-    program "#{node['commvault']['installDirectory']}\\DlpRecaller.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\DlpRecaller.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_DM2ExMBRestore' do
-    program "#{node['commvault']['installDirectory']}\\DM2ExMBRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\DM2ExMBRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_DM2SPDocRestore' do
-    program "#{node['commvault']['installDirectory']}\\DM2SPDocRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\DM2SPDocRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_DM2ZipFiles' do
-    program "#{node['commvault']['installDirectory']}\\DM2ZipFiles.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\DM2ZipFiles.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_dmc' do
-    program "#{node['commvault']['installDirectory']}\\dmc.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\dmc.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_DriverInstaller' do
-    program "#{node['commvault']['installDirectory']}\\DriverInstaller.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\DriverInstaller.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_ExIntegCheck' do
-    program "#{node['commvault']['installDirectory']}\\ExIntegCheck.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\ExIntegCheck.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_exitNTbat' do
-    program "#{node['commvault']['installDirectory']}\\exitNTbat.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\exitNTbat.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_FailOverSetup' do
-    program "#{node['commvault']['installDirectory']}\\FailOverSetup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\FailOverSetup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_FirewallConfigDeprecated' do
-    program "#{node['commvault']['installDirectory']}\\FirewallConfigDeprecated.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\FirewallConfigDeprecated.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_FSVSSRestore' do
-    program "#{node['commvault']['installDirectory']}\\FSVSSRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\FSVSSRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_getBackupList' do
-    program "#{node['commvault']['installDirectory']}\\getBackupList.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\getBackupList.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_GxAdmin' do
-    program "#{node['commvault']['installDirectory']}\\GxAdmin.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\GxAdmin.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_GXHSMPopup' do
-    program "#{node['commvault']['installDirectory']}\\GXHSMPopup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\GXHSMPopup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_GXHSMSelDel' do
-    program "#{node['commvault']['installDirectory']}\\GXHSMSelDel.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\GXHSMSelDel.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_GXHSMStub' do
-    program "#{node['commvault']['installDirectory']}\\GXHSMStub.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\GXHSMStub.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_GXHSMUtility' do
-    program "#{node['commvault']['installDirectory']}\\GXHSMUtility.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\GXHSMUtility.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_GxKill' do
-    program "#{node['commvault']['installDirectory']}\\GxKill.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\GxKill.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_GxSplash' do
-    program "#{node['commvault']['installDirectory']}\\GxSplash.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\GxSplash.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_GxTail' do
-    program "#{node['commvault']['installDirectory']}\\GxTail.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\GxTail.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_GxWinClusterPlugin' do
-    program "#{node['commvault']['installDirectory']}\\GxWinClusterPlugin.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\GxWinClusterPlugin.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_IFind' do
-    program "#{node['commvault']['installDirectory']}\\IFind.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\IFind.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_ImgFileLvlRestore' do
-    program "#{node['commvault']['installDirectory']}\\ImgFileLvlRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\ImgFileLvlRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_IndexingService' do
-    program "#{node['commvault']['installDirectory']}\\IndexingService.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\IndexingService.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_InstallUpdates' do
-    program "#{node['commvault']['installDirectory']}\\InstallUpdates.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\InstallUpdates.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_Laptop2Taskbaricon' do
-    program "#{node['commvault']['installDirectory']}\\Laptop2Taskbaricon.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\Laptop2Taskbaricon.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_ListFilesForJob' do
-    program "#{node['commvault']['installDirectory']}\\ListFilesForJob.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\ListFilesForJob.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_LogMonitoring' do
-    program "#{node['commvault']['installDirectory']}\\LogMonitoring.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\LogMonitoring.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_MigrationAssistant' do
-    program "#{node['commvault']['installDirectory']}\\MigrationAssistant.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\MigrationAssistant.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_MoveDDBClientCacheClient' do
-    program "#{node['commvault']['installDirectory']}\\MoveDDBClientCacheClient.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\MoveDDBClientCacheClient.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_MoveDir' do
-    program "#{node['commvault']['installDirectory']}\\MoveDir.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\MoveDir.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_MSIRemoveOrphanedRegKeys' do
-    program "#{node['commvault']['installDirectory']}\\MSIRemoveOrphanedRegKeys.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\MSIRemoveOrphanedRegKeys.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_OneTchUtl' do
-    program "#{node['commvault']['installDirectory']}\\OneTchUtl.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\OneTchUtl.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_OneTouch' do
-    program "#{node['commvault']['installDirectory']}\\OneTouch.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\OneTouch.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_PassPhraseTool' do
-    program "#{node['commvault']['installDirectory']}\\PassPhraseTool.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\PassPhraseTool.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_PseudoMountClient' do
-    program "#{node['commvault']['installDirectory']}\\PseudoMountClient.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\PseudoMountClient.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QCreate' do
-    program "#{node['commvault']['installDirectory']}\\QCreate.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QCreate.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QCURL' do
-    program "#{node['commvault']['installDirectory']}\\QCURL.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QCURL.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QDelete' do
-    program "#{node['commvault']['installDirectory']}\\QDelete.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QDelete.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QDrive' do
-    program "#{node['commvault']['installDirectory']}\\QDrive.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QDrive.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QGetErrorString' do
-    program "#{node['commvault']['installDirectory']}\\QGetErrorString.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QGetErrorString.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QInfo' do
-    program "#{node['commvault']['installDirectory']}\\QInfo.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QInfo.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QLibrary' do
-    program "#{node['commvault']['installDirectory']}\\QLibrary.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QLibrary.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QList' do
-    program "#{node['commvault']['installDirectory']}\\QList.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QList.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QLogin' do
-    program "#{node['commvault']['installDirectory']}\\QLogin.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QLogin.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QLogout' do
-    program "#{node['commvault']['installDirectory']}\\QLogout.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QLogout.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QMedia' do
-    program "#{node['commvault']['installDirectory']}\\QMedia.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QMedia.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QModify' do
-    program "#{node['commvault']['installDirectory']}\\QModify.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QModify.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QOperation' do
-    program "#{node['commvault']['installDirectory']}\\QOperation.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QOperation.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QSCM' do
-    program "#{node['commvault']['installDirectory']}\\QSCM.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QSCM.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QST2' do
-    program "#{node['commvault']['installDirectory']}\\QST2.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QST2.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QUninstallAll' do
-    program "#{node['commvault']['installDirectory']}\\QUninstallAll.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QUninstallAll.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_QUninstaller' do
-    program "#{node['commvault']['installDirectory']}\\QUninstaller.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\QUninstaller.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_Remotc' do
-    program "#{node['commvault']['installDirectory']}\\Remotc.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\Remotc.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_RemoveUpdates' do
-    program "#{node['commvault']['installDirectory']}\\RemoveUpdates.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\RemoveUpdates.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_restoreClusterDb' do
-    program "#{node['commvault']['installDirectory']}\\restoreClusterDb.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\restoreClusterDb.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_SetPreImagedNames' do
-    program "#{node['commvault']['installDirectory']}\\SetPreImagedNames.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\SetPreImagedNames.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_SIMCallWrapper' do
-    program "#{node['commvault']['installDirectory']}\\SIMCallWrapper.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\SIMCallWrapper.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_SQLBackup' do
-    program "#{node['commvault']['installDirectory']}\\SQLBackup.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\SQLBackup.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_SQLBackupMaster' do
-    program "#{node['commvault']['installDirectory']}\\SQLBackupMaster.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\SQLBackupMaster.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_SQLVSSRestore' do
-    program "#{node['commvault']['installDirectory']}\\SQLVSSRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\SQLVSSRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_StubRecaller' do
-    program "#{node['commvault']['installDirectory']}\\StubRecaller.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\StubRecaller.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_syncRegKeys' do
-    program "#{node['commvault']['installDirectory']}\\syncRegKeys.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\syncRegKeys.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_unzip' do
-    program "#{node['commvault']['installDirectory']}\\unzip.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\unzip.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_UpdateNotificationCenter' do
-    program "#{node['commvault']['installDirectory']}\\UpdateNotificationCenter.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\UpdateNotificationCenter.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_VMWareSnapRestore' do
-    program "#{node['commvault']['installDirectory']}\\VMWareSnapRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\VMWareSnapRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_VSAAppNotifier' do
-    program "#{node['commvault']['installDirectory']}\\VSAAppNotifier.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\VSAAppNotifier.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_w2dbRestore' do
-    program "#{node['commvault']['installDirectory']}\\w2dbRestore.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\w2dbRestore.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_WinSysMonSetupTool' do
-    program "#{node['commvault']['installDirectory']}\\WinSysMonSetupTool.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\WinSysMonSetupTool.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_XMLParser' do
-    program "#{node['commvault']['installDirectory']}\\XMLParser.exe"
-    firewall_action :allow
+	program "#{node['commvault']['installDirectory']}\\XMLParser.exe"
+	firewall_action :allow
 end
 
 windows_firewall_rule 'CommVault_Process_zip' do
-    program "#{node['commvault']['installDirectory']}\\zip.exe"
+	program "#{node['commvault']['installDirectory']}\\zip.exe"
+	firewall_action :allow
+end
+
+windows_firewall_rule 'Commvault nCVDPort' do
+    localport registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").find { |k| k[:name] == 'nCVDPort' }[:data].to_s
+    protocol 'TCP'
     firewall_action :allow
+    only_if {registry_key_exists?("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session") && !registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").select { |v| v[:name] == "nCVDPort" && !v[:Data].nil? }.first.nil?}
+end
+
+windows_firewall_rule 'Commvault nEMSPORT' do
+    localport registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").find { |k| k[:name] == 'nEMSPORT' }[:data].to_s
+    protocol 'TCP'
+    firewall_action :allow
+    only_if {registry_key_exists?("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session") && !registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").select { |v| v[:name] == "nEMSPORT" && !v[:Data].nil?}.first.nil?}
+end
+
+windows_firewall_rule 'Commvault nEVMGRCPORT' do
+    localport registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").find { |k| k[:name] == 'nEVMGRCPORT' }[:data].to_s
+    protocol 'TCP'
+    firewall_action :allow
+    only_if {registry_key_exists?("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session") && !registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").select { |v| v[:name] == "nEVMGRCPORT" && !v[:Data].nil?}.first.nil?}
 end
 
 template "#{node['commvault']['installDirectory']}Base\\SQLBackup.exe.config" do
