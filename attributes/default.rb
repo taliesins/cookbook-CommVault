@@ -63,7 +63,7 @@ default['commvault']['commandLine']['domainName'] = ''
 default['commvault']['commandLine']['userName'] = ''
 default['commvault']['commandLine']['encryptedPassword'] = ''
 
-default['commvault']['name'] = 'CommVault File System Core (' + default['commvault']['instanceName'] + ')'
+default['commvault']['name'] = 'Commvault ContentStore'
 default['commvault']['packagename'] = 'CommVault-Client'
 default['commvault']['packagetype'] = 'WinX64'
 default['commvault']['filename'] = default['commvault']['packagename'] + '_' + default['commvault']['packagetype']
