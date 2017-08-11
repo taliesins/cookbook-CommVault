@@ -32,10 +32,34 @@ template install_configuration_path do
   source 'Install.xml.erb'
 end
 
-windows_package node['commvault']['name'] do
+commvault_changed = windows_package node['commvault']['name'] do
 	source "#{install_path}/Setup.exe"
 	installer_type :custom
-	options "/Silent /play \"#{install_configuration_path}\""
+    options "/Silent /play \"#{install_configuration_path}\""
+    notifies :create, 'windows_firewall_rule[Commvault nCVDPort]', :immediately
+    notifies :create, 'windows_firewall_rule[Commvault nEMSPORT]', :immediately
+    notifies :create, 'windows_firewall_rule[Commvault nEVMGRCPORT]', :immediately
+end
+
+windows_firewall_rule 'Commvault nCVDPort' do
+    localport lazy {registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").find { |k| k[:name] == 'nCVDPort' }[:data].to_s}
+    protocol 'TCP'
+    firewall_action :allow
+    only_if {registry_key_exists?("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session") && !registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").select { |v| v[:name] == "nCVDPort" && !v[:Data].nil? }.first.nil?}
+end
+
+windows_firewall_rule 'Commvault nEMSPORT' do
+    localport lazy {registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").find { |k| k[:name] == 'nEMSPORT' }[:data].to_s}
+    protocol 'TCP'
+    firewall_action :allow
+    only_if {registry_key_exists?("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session") && !registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").select { |v| v[:name] == "nEMSPORT" && !v[:Data].nil?}.first.nil?}
+end
+
+windows_firewall_rule 'Commvault nEVMGRCPORT' do
+    localport lazy {registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").find { |k| k[:name] == 'nEVMGRCPORT' }[:data].to_s}
+    protocol 'TCP'
+    firewall_action :allow
+    only_if {registry_key_exists?("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session") && !registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").select { |v| v[:name] == "nEVMGRCPORT" && !v[:Data].nil?}.first.nil?}
 end
 
 powershell_script 'Register client with comm vault server' do
@@ -1129,27 +1153,6 @@ end
 windows_firewall_rule 'CommVault_Process_zip' do
 	program "#{node['commvault']['installDirectory']}\\zip.exe"
 	firewall_action :allow
-end
-
-windows_firewall_rule 'Commvault nCVDPort' do
-    localport registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").find { |k| k[:name] == 'nCVDPort' }[:data].to_s
-    protocol 'TCP'
-    firewall_action :allow
-    only_if {registry_key_exists?("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session") && !registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").select { |v| v[:name] == "nCVDPort" && !v[:Data].nil? }.first.nil?}
-end
-
-windows_firewall_rule 'Commvault nEMSPORT' do
-    localport registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").find { |k| k[:name] == 'nEMSPORT' }[:data].to_s
-    protocol 'TCP'
-    firewall_action :allow
-    only_if {registry_key_exists?("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session") && !registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").select { |v| v[:name] == "nEMSPORT" && !v[:Data].nil?}.first.nil?}
-end
-
-windows_firewall_rule 'Commvault nEVMGRCPORT' do
-    localport registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").find { |k| k[:name] == 'nEVMGRCPORT' }[:data].to_s
-    protocol 'TCP'
-    firewall_action :allow
-    only_if {registry_key_exists?("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session") && !registry_get_values("HKEY_LOCAL_MACHINE\\SOFTWARE\\CommVault Systems\\Galaxy\\#{node['commvault']['instanceName']}\\Session").select { |v| v[:name] == "nEVMGRCPORT" && !v[:Data].nil?}.first.nil?}
 end
 
 template "#{node['commvault']['installDirectory']}Base\\SQLBackup.exe.config" do
